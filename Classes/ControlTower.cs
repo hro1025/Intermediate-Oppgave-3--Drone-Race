@@ -1,10 +1,7 @@
 namespace Intermediate_Oppgave_3__Drone_Race.Classes;
 
-
 public class ControlTower
 {
-   
-
     public void Fly()
     {
         Console.WriteLine("Start flying");
@@ -15,8 +12,4 @@ public class ControlTower
         }
         Console.WriteLine("Finished flying");
     }
-        
-
-
-
 }
