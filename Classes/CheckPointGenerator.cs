@@ -1,0 +1,1 @@
+namespace Intermediate_Oppgave_3_Drone_Race.Classes;
