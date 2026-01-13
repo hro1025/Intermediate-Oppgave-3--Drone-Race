@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
+﻿using Intermediate_Oppgave_3_Drone_Race.Classes;
 
 namespace Intermediate_Oppgave_3_Drone_Race;
 
