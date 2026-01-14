@@ -1,4 +1,5 @@
 ﻿using Intermediate_Oppgave_3_Drone_Race.Classes;
+using Spectre.Console;
 
 namespace Intermediate_Oppgave_3_Drone_Race;
 
@@ -6,15 +7,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        var controlTower = new ControlTower();
+        // var controlTower = new ControlTower();
 
-        var t1 = new Thread(controlTower.Fly);
-        t1.Start();
-        var t2 = new Thread(controlTower.Fly);
-        t2.Start();
+        // var t1 = new Thread(controlTower.Fly);
+        // t1.Start();
+        // var t2 = new Thread(controlTower.Fly);
+        // t2.Start();
 
-        t1.Join();
-        t2.Join();
+        // t1.Join();
+        // t2.Join();
 
         while (true)
         {
