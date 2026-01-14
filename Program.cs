@@ -1,4 +1,6 @@
-﻿using Intermediate_Oppgave_3_Drone_Race.Classes;
+﻿using System.Runtime.InteropServices;
+using System.Threading.Tasks.Dataflow;
+using Intermediate_Oppgave_3_Drone_Race.Classes;
 using Spectre.Console;
 
 namespace Intermediate_Oppgave_3_Drone_Race;
@@ -17,6 +19,8 @@ class Program
         // t1.Join();
         // t2.Join();
 
+        RouteInfo routeInfo = new RouteInfo();
+
         while (true)
         {
             // create the selection menu
@@ -31,8 +35,9 @@ class Program
 
             switch (operation)
             {
-                case "Thead + Join":
-
+                case "Thread + Join":
+                    Console.Clear();
+                    routeInfo.Route();
                     break;
 
                 case "Task + CompletionSource":

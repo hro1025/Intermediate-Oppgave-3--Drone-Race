@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.54.0" />
-    <None Include="Data\Capitals.json">
+    <None Include="Data\CheckPointData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
