@@ -1,10 +1,8 @@
-namespace Intermediate_Oppgave_3_Drone_Race.Classes;
-
 public class CheckPointInfo
 {
     public class CapitalsData
     {
-        public string Meta { get; set; } = null!;
+        public MetaData Meta { get; set; } = null!;
         public List<CapitalInfo> Capitals { get; set; } = null!;
         public List<List<double>> DistanceMatrix { get; set; } = null!;
     }
