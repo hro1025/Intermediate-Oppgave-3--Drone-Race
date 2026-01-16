@@ -1,4 +1,4 @@
-public class CheckPointInfo
+public class JsonData
 {
     public class CapitalsData
     {
@@ -10,8 +10,6 @@ public class CheckPointInfo
     public class MetaData
     {
         public string DistanceUnit { get; set; } = null!;
-        public string DistanceFormula { get; set; } = null!;
-        public int CapitalCount { get; set; }
     }
 
     public class CapitalInfo
@@ -21,5 +19,12 @@ public class CheckPointInfo
         public string Country { get; set; } = null!;
         public double Lat { get; set; }
         public double Lon { get; set; }
+    }
+
+    public class RouteResult
+    {
+        public int StartId { get; set; }
+        public int StopId { get; set; }
+        public List<int> CheckpointIds { get; set; } = new();
     }
 }

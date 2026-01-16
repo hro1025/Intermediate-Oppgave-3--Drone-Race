@@ -1,8 +1,6 @@
 {
   "Meta": {
-    "DistanceUnit": "kilometers",
-    "DistanceFormula": "haversine",
-    "CapitalCount": 40
+    "DistanceUnit": "Km"
   },
   "Capitals": [
     {

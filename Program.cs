@@ -19,7 +19,9 @@ class Program
         // t1.Join();
         // t2.Join();
 
-        RouteInfo routeInfo = new RouteInfo();
+        JsonData jsonData = new JsonData();
+        RouteGenerator routeGenerator = new DistanceCalculator();
+        DistanceCalculator distance = new DistanceCalculator();
 
         while (true)
         {
@@ -37,7 +39,8 @@ class Program
             {
                 case "Thread + Join":
                     Console.Clear();
-                    routeInfo.Route();
+
+                    distance.Distance();
                     break;
 
                 case "Task + CompletionSource":
