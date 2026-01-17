@@ -1,6 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using System.Threading.Tasks.Dataflow;
-using Intermediate_Oppgave_3_Drone_Race.Classes;
+﻿using Intermediate_Oppgave_3_Drone_Race.Classes;
+using Intermediate_Oppgave_3_Drone_Race.Models;
 using Spectre.Console;
 
 namespace Intermediate_Oppgave_3_Drone_Race;
@@ -19,9 +18,7 @@ class Program
         // t1.Join();
         // t2.Join();
 
-        JsonData jsonData = new JsonData();
-        RouteGenerator routeGenerator = new DistanceCalculator();
-        DistanceCalculator distance = new DistanceCalculator();
+        routePrint print = new routePrint();
 
         while (true)
         {
@@ -39,8 +36,9 @@ class Program
             {
                 case "Thread + Join":
                     Console.Clear();
+                    print.RouteInfoOutput();
+                    Console.ReadKey();
 
-                    distance.Distance();
                     break;
 
                 case "Task + CompletionSource":

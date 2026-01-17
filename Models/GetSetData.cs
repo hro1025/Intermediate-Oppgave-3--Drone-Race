@@ -1,4 +1,8 @@
-public class JsonData
+using Intermediate_Oppgave_3_Drone_Race.Classes;
+
+namespace Intermediate_Oppgave_3_Drone_Race.Models;
+
+public class GetSetData
 {
     public class CapitalsData
     {
@@ -19,12 +23,5 @@ public class JsonData
         public string Country { get; set; } = null!;
         public double Lat { get; set; }
         public double Lon { get; set; }
-    }
-
-    public class RouteResult
-    {
-        public int StartId { get; set; }
-        public int StopId { get; set; }
-        public List<int> CheckpointIds { get; set; } = new();
     }
 }
