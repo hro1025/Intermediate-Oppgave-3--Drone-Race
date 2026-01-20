@@ -1,5 +1,4 @@
 ﻿using Intermediate_Oppgave_3_Drone_Race.Classes;
-using Intermediate_Oppgave_3_Drone_Race.Models;
 using Spectre.Console;
 
 namespace Intermediate_Oppgave_3_Drone_Race;
@@ -8,46 +7,37 @@ class Program
 {
     static void Main(string[] args)
     {
-        // var controlTower = new ControlTower();
-
-        // var t1 = new Thread(controlTower.Fly);
-        // t1.Start();
-        // var t2 = new Thread(controlTower.Fly);
-        // t2.Start();
-
-        // t1.Join();
-        // t2.Join();
-
-        routePrint print = new routePrint();
+        var print = new routePrint();
+        var droneInfo = new DroneInfo();
 
         while (true)
         {
-            // create the selection menu
-            Console.WriteLine();
+            Console.Clear();
+
             var operation = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("[bold]Choose your Operation[/]?")
-                    .AddChoices(
-                        new[] { "Thread + Join", "Task + CompletionSource", "Async/Await", "Exit" }
-                    )
+                    .Title("[bold yellow]Choose your Operation[/]")
+                    .AddChoices("Thread + Join", "Exit")
             );
 
             switch (operation)
             {
                 case "Thread + Join":
+                {
                     Console.Clear();
-                    print.RouteInfoOutput();
+
+                    var route = RouteInfo.Route();
+                    print.RouteInfoOutput(route);
+
+                    Console.WriteLine("\nPress any key to start drones...");
                     Console.ReadKey();
 
+                    droneInfo.ThreadDrone(route);
+
+                    Console.WriteLine("\nAll drones have finished the route.");
+                    Console.ReadKey();
                     break;
-
-                case "Task + CompletionSource":
-
-                    break;
-
-                case "Async/Await":
-
-                    break;
+                }
 
                 case "Exit":
                     Environment.Exit(0);

@@ -1,16 +1,11 @@
-using Intermediate_Oppgave_3_Drone_Race.Classes;
 using Spectre.Console;
 
 namespace Intermediate_Oppgave_3_Drone_Race.Classes;
 
 public class routePrint
 {
-    RouteFinalInfo route = RouteInfo.Route();
-
-    public void RouteInfoOutput()
+    public void RouteInfoOutput(RouteFinalInfo route)
     {
-        RouteFinalInfo route = RouteInfo.Route();
-
         var table = new Table();
         table.Title("Route Info");
         table.Width(150);
@@ -21,13 +16,12 @@ public class routePrint
         table.AddColumn(new TableColumn("Distance").Centered());
 
         table.AddRow(
-            new Text(route.Start),
-            new Text(string.Join(" - ", route.CheckPoints)),
-            new Text(route.Stop),
-            new Text($"{route.TotalDistanceKm:F2} km")
+            route.Start,
+            string.Join(" - ", route.CheckPoints),
+            route.Stop,
+            $"{route.TotalDistanceKm:F2} km"
         );
 
         AnsiConsole.Write(table);
-        Console.ReadKey();
     }
 }

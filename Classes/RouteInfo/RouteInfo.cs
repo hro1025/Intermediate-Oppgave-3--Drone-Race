@@ -1,5 +1,3 @@
-using System.Dynamic;
-using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using Intermediate_Oppgave_3_Drone_Race.Models;
 
@@ -7,51 +5,43 @@ namespace Intermediate_Oppgave_3_Drone_Race.Classes;
 
 public class RouteInfo
 {
-    public static void Route()
+    public static RouteFinalInfo Route()
     {
-        List<int> checkPointPositions = new();
+        Random random = new();
 
-        Random random = new Random();
+        int startId = random.Next(0, 40);
+        int stopId = random.Next(0, 40);
 
-        for (int i = 0; i < 10; i++)
+        List<int> checkPointIds = new();
+        while (checkPointIds.Count < 5)
         {
-            int checkPoint = random.Next(0, 40);
-
-            if (!checkPointPositions.Contains(checkPoint))
-                checkPointPositions.Add(checkPoint);
-            else
-                i--;
+            int id = random.Next(0, 40);
+            if (id != startId && id != stopId && !checkPointIds.Contains(id))
+                checkPointIds.Add(id);
         }
-
-        int startPosition = random.Next(0, 40);
-        int stopPosition = random.Next(0, 40);
 
         string jsonString = File.ReadAllText("Data/Data.json");
-        var data = JsonSerializer.Deserialize<GetSetData.CapitalsData>(jsonString);
+        var data = JsonSerializer.Deserialize<GetSetData.CapitalsData>(jsonString)!;
 
-        var startLocation = data.Capitals.FirstOrDefault(c => c.Id == startPosition);
-        var stopLocation = data.Capitals.FirstOrDefault(c => c.Id == stopPosition);
+        var start = data.Capitals.First(c => c.Id == startId);
+        var stop = data.Capitals.First(c => c.Id == stopId);
 
-        var checkPoints = checkPointLocations.Select(c => c.Name).ToList();
+        double totalKm =
+            data.DistanceMatrix[startId][checkPointIds[0]]
+            + checkPointIds
+                .Zip(checkPointIds.Skip(1), (from, to) => data.DistanceMatrix[from][to])
+                .Sum()
+            + data.DistanceMatrix[checkPointIds[^1]][stopId];
 
-        double totalDistance = 0;
-
-        totalDistance += data.DistanceMatrix[startLocation.Id][checkPointLocations[0].Id];
-
-        for (int i = 0; i < checkPointLocations.Count - 1; i++)
+        return new RouteFinalInfo
         {
-            totalDistance += data.DistanceMatrix[checkPointLocations[i].Id][
-                checkPointLocations[i + 1].Id
-            ];
-        }
-
-        totalDistance += data.DistanceMatrix[checkPointLocations[^1].Id][stopLocation.Id];
-
-        var Start = startLocation?.Name ?? "Unknown";
-        var checkPoints = checkPointLocations.Name;
-        var Stop = stopLocation?.Name ?? "Unknown";
-
-        var km = totalDistance;
+            Start = start.Name,
+            Stop = stop.Name,
+            CheckPoints = checkPointIds
+                .Select(id => data.Capitals.First(c => c.Id == id).Name)
+                .ToList(),
+            TotalDistanceKm = totalKm,
+        };
     }
 }
 
