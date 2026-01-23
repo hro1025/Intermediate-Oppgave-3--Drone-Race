@@ -7,15 +7,40 @@ public class TaskDroneInfo
 {
     public async Task TaskDrone(RouteFinalInfo route)
     {
-        var masterTsc = new TaskCompletionSource();
+        Random random = new Random();
+
+        var masterTcs = new TaskCompletionSource<bool>();
 
         var taskDrone1 = Task.Run(() => FlyRoute(route, "Drone 1"));
-
         var taskDrone2 = Task.Run(() => FlyRoute(route, "Drone 2"));
 
-        await Task.WaitAll(taskDrone1, taskDrone2);
+        bool crashHappens = random.Next(0, 2) == 1;
 
-        masterTsc.SetResult();
+        if (crashHappens)
+        {
+            int crashedDrone = random.Next(1, 3); // 1 or 2
+
+            if (crashedDrone == 1)
+            {
+                masterTcs.SetException(new Exception("Drone 1 crashed"));
+            }
+            else
+            {
+                masterTcs.SetException(new Exception("Drone 2 crashed"));
+            }
+        }
+        else
+        {
+            _ = Task.WhenAll(taskDrone1, taskDrone2)
+                .ContinueWith(t =>
+                {
+                    if (t.IsFaulted)
+                        masterTcs.SetException(t.Exception!);
+                    else
+                        masterTcs.SetResult(true);
+                });
+        }
+        await masterTcs.Task;
     }
 
     public static Task FlyRoute(RouteFinalInfo route, string droneName)

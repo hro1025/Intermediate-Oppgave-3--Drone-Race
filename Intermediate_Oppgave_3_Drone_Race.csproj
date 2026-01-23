@@ -12,5 +12,6 @@
     <None Include="Data\Data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <PackageReference Include="Spectre.Console.Cli" Version="0.53.1" />
   </ItemGroup>
 </Project>
