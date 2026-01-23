@@ -3,5 +3,4 @@
 
 
 ## Thread + Join
-
-Hvis jeg ikke bruker Thread.Join, stopper ikke tråden riktig. Det vil si at outputen stopper etter at de har fløyet til den siste hovedstaden. Når jeg derimot bruker Thread.Join, blir outputen fullført.
+If I don’t use Thread.Join, the thread does not stop correctly. That means the output stops after they have flown to the last capital. When I do use Thread.Join, the output is completed.

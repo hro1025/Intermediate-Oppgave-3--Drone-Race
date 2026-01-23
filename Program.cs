@@ -33,10 +33,12 @@ class Program
 
                     Console.WriteLine("\nPress any key to start drones...");
                     Console.ReadKey();
+                    Console.WriteLine();
 
                     threadDroneInfo.ThreadDrone(route);
 
                     Console.WriteLine("\nAll drones have finished the route.");
+                    Console.WriteLine("Please press any key to return to the main menu.");
                     Console.ReadKey();
                     break;
                 }
@@ -48,10 +50,12 @@ class Program
 
                     Console.WriteLine("\nPress any key to start drones...");
                     Console.ReadKey();
+                    Console.WriteLine();
 
                     await taskDroneInfo.TaskDrone(route);
 
                     Console.WriteLine("\nAll drones have finished the route.");
+                    Console.WriteLine("Please press any key to return to the main menu.");
                     Console.ReadKey();
                     break;
                 }

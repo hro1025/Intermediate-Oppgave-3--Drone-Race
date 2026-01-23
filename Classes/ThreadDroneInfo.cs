@@ -18,14 +18,18 @@ public class ThreadDroneInfo
 
     public void FlyRoute(RouteFinalInfo route, string droneName)
     {
+        Random random = new Random();
+
         Console.WriteLine($"{droneName} Departing from {route.Start}");
+        Thread.Sleep(1000);
 
         foreach (var location in route.CheckPoints)
         {
-            Console.WriteLine($"{droneName} flying over {location}");
-            Thread.Sleep(1000);
+            int delay = random.Next(100, 500);
+            Thread.Sleep(delay);
+            Console.WriteLine($"{droneName} flying over {location, -25} {delay, 5} ms");
         }
-
-        Console.WriteLine($"{droneName} finished route at {route.Stop}");
+        Thread.Sleep(1000);
+        Console.WriteLine($"{droneName} landed at {route.Stop}");
     }
 }
